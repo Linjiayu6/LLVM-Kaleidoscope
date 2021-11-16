@@ -1,4 +1,6 @@
 // 词法分析 定义token类型, 用于识别结构
+
+// 定义负数的原因是 ASCII码的字符都是正数
 enum Token {
   token_eof = -1,
   // define
