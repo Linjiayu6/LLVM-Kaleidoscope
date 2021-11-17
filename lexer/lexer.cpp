@@ -8,7 +8,7 @@
 enum Token {
   token_eof = -1,
 
-  token_define = -2,
+  token_def = -2,
   token_extern = -3,
 
   token_identifier = -4,
@@ -35,7 +35,7 @@ static int gettoken() {
 
     // check identifier
     if (IdentifierStr == "def") {
-      return token_define;
+      return token_def;
     }
 
     // check token_extern
@@ -86,7 +86,8 @@ static int getNextToken() { return CurToken = gettoken(); }
 
 static void MainLoop() {
   while (true) {
-    fprintf(stderr, "ready> ");
+    printf("CurToken: %d\n", CurToken); 
+
     switch (CurToken)
     {
     case token_eof:
@@ -97,10 +98,10 @@ static void MainLoop() {
       break;
     
     default:
+      getNextToken();
       break;
     }
   }
-  
 }
 
 int main() {
@@ -115,8 +116,6 @@ int main() {
   fprintf(stderr, "ready> ");
   
   getNextToken();
-
-  /* printf("SUM: %d\n", CurToken); */
 
   // Run the main "interpreter loop" now.
   MainLoop();
